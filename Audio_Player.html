@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var i=0;
+        var l=0;
+        var audio={
+            playlist: [
+            {
+                name: "Andy_dukhtari_bandari",
+                year: 2005,
+                duration: "4minut"
+            },
+            {
+                name: "Qumaishi_Manu_Tehran",
+                year: 2015,
+                duration: "5minut"
+            },
+            {
+                name: "Boborajab",
+                year: 2016,
+                duration: "3,5minut"
+            }
+            ],
+            play: function(){
+                box=audio.playlist[i].name+"-"+audio.playlist[i].year+"-"+audio.playlist[i].duration;
+            l++;
+            console.log(box);
+            },
+            next: function(){
+                i++;
+                if(i < audio.playlist.length){
+                    i=i;
+                }
+                else {i=0;}
+                console.log(audio.playlist[i].name+"-"+audio.playlist[i].year+"-"+audio.playlist[i].duration);
+            },
+            prev: function(){
+                if(i>0){
+                i=i;
+            } else {
+                i=audio.playlist.length;
+            }
+            i--;
+            console.log(audio.playlist[i].name+"-"+audio.playlist[i].year+"-"+audio.playlist[i].duration);
+            },
+            getCurrent: function(){
+                if(l==0){
+                console.log("Spisok pust");
+            } else {
+                console.log(audio.playlist[i].name+"-"+audio.playlist[i].year+"-"+audio.playlist[i].duration);
+            }
+            },
+        }
+        var video={
+            play_from: "Window-form",
+            Upload_to_Youtube: "Загруженно в ютюб",
+            __proto__: audio
+        }
+        //-------Audio------------
+        // console.log(audio.play());
+        // console.log(audio.next());
+        // console.log(audio.prev());
+        // console.log(audio.getCurrent());
+        //------Video-------------
+        // console.log(video.play());
+        // console.log(video.next());
+        // console.log(video.prev());
+        // console.log(video.getCurrent());
+    </script>
+</body>
+</html>
