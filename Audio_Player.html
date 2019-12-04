@@ -8,71 +8,83 @@
 </head>
 <body>
     <script>
-        var i=0;
-        var l=0;
-        var audio={
-            playlist: [
-            {
-                name: "Andy_dukhtari_bandari",
-                year: 2005,
-                duration: "4minut"
-            },
-            {
-                name: "Qumaishi_Manu_Tehran",
-                year: 2015,
-                duration: "5minut"
-            },
-            {
-                name: "Boborajab",
-                year: 2016,
-                duration: "3,5minut"
-            }
-            ],
-            play: function(){
-                box=audio.playlist[i].name+"-"+audio.playlist[i].year+"-"+audio.playlist[i].duration;
-            l++;
-            console.log(box);
-            },
+        var Player={
+            list: [],
+            name: "player",
+            currentItem: 0,
+            played: false,
             next: function(){
-                i++;
-                if(i < audio.playlist.length){
-                    i=i;
+                if(this.played){
+                    this.currentItem++;
+                } else {
+                    this.currentItem=0;
                 }
-                else {i=0;}
-                console.log(audio.playlist[i].name+"-"+audio.playlist[i].year+"-"+audio.playlist[i].duration);
             },
             prev: function(){
-                if(i>0){
-                i=i;
-            } else {
-                i=audio.playlist.length;
-            }
-            i--;
-            console.log(audio.playlist[i].name+"-"+audio.playlist[i].year+"-"+audio.playlist[i].duration);
+                if(this.played && this.currentItem > 0){
+                    this.currentItem--;
+                } else {
+                    this.currentItem = this.list.length - 1;
+                }
             },
             getCurrent: function(){
-                if(l==0){
-                console.log("Spisok pust");
-            } else {
-                console.log(audio.playlist[i].name+"-"+audio.playlist[i].year+"-"+audio.playlist[i].duration);
-            }
+                return this.list[this.currentItem];
             },
-        }
-        var video={
-            play_from: "Window-form",
-            Upload_to_Youtube: "Загруженно в ютюб",
-            __proto__: audio
-        }
-        //-------Audio------------
-        // console.log(audio.play());
-        // console.log(audio.next());
-        // console.log(audio.prev());
-        // console.log(audio.getCurrent());
-        //------Video-------------
-        // console.log(video.play());
-        // console.log(video.next());
-        // console.log(video.prev());
-        // console.log(video.getCurrent());
+            play: function(){
+                this.played = true;
+                console.log(this.getCurrent());
+            },
+            addToList: function(listItem){
+                this.list.push(listItem);
+            }
+        };
+        
+
+        // var VideoPlayer = Object.create(Player);
+        
+        // VideoPlayer.uploadToYoutube = function(name){
+        //     for(var i=0; i<this.list.length; i++){
+        //         if(this.list[i].name===name){
+        //             console.log("upload to youtube", this.list[i]);
+        //             return
+        //         }
+        //     }
+        //     console.log("can not find file "+ name + "to upload to youtube");
+        // };
+        // VideoPlayer.playFromYoutube=function(item){
+        //     console.log("Playing video from youtube:", item);
+        //     // this.addToList(item);
+        // };
+        // VideoPlayer.addToList({name: "Shashmaqom", year: 2000, duration: "3,2m",authot: "Tajik National"});
+        // VideoPlayer.uploadToYoutube("Shashmaqom");
+        
+        
+        
+        
+        // Мой метод
+        var VideoPlayer ={
+            list: [],
+            uploadToYoutube: function(name){
+                for(var i=0; i<this.list.length; i++){
+                if(this.list[i].name===name){
+                    console.log("upload to youtube", this.list[i]);
+                    return
+                }
+            }
+            console.log("can not find file "+ name + "to upload to youtube");
+            },
+            playFromYoutube: function(item){
+            console.log("Playing video from youtube:", item);
+            // this.addToList(item);
+        },
+        __proto__: Player
+        };
+        VideoPlayer.addToList({name: "Shashmaqom", year: 2000, duration: "3,2m",authot: "Tajik National"});
+        VideoPlayer.uploadToYoutube("Shashmaqom");
+        console.log("Player list:", Player.list); //Пустой
+        
+        // Player.addToList({name: "Shashmaqom", year: 2000, duration: "3,2m",authot: "Tajik National"});
+        // console.log("Player list:", Player.list); // есть объект
     </script>
 </body>
 </html>
