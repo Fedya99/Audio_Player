@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    var arr = ["1, 2, 3"]
+ Array.prototype.ownjoin = function(sperator) {
+    var str = '';
+
+    for(var i = 0, len = this.length; i < len; i++) {
+        str += this[i] + sperator;
+    }
+    return str;
+}
+console.log(arr.ownjoin(","));
+
+
+
+String.prototype.ownsplit = function(sperator) {
+    var arr =[];
+    for(var i = 0; i < this.length; i++) {
+        arr.push(this.charAt(i));
+    }
+
+    return arr;
+}
+ var str = "BOBOJOHN"
+console.log(str.ownsplit(""));
+    </script>
+</body>
+</html>
